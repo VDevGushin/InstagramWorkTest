@@ -29,30 +29,35 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="TEST" Style="{StaticResource PhoneTextNormalStyle}"/>           
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel>
-                <TextBox Text="{Binding InputName,Mode=TwoWay}"></TextBox>
-                <Button Content="Давай коллаж" Command="{Binding Lets_Сollage_Command}"></Button>
-                <ListBox ItemsSource="{Binding ImageData}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" Text="{Binding InputName,Mode=TwoWay}"></TextBox>
+                <Button Grid.Row="1" Content="Давай коллаж" Command="{Binding Lets_Сollage_Command}"></Button>
+                
+                <ListBox Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ImageData}" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
+                            <toolkit:WrapPanel/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
-                        <DataTemplate >  
-                            <StackPanel Background="Green">
-                                    <TextBlock Foreground="Red" Text="{Binding link}"> </TextBlock>
-                            </StackPanel>
+                        <DataTemplate >
+                            <Image Margin="12" Source="{Binding images.low_resolution.url}" Width="100" Height="100"></Image>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 

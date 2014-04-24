@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace InstagramDownloaderTest.ViewModel
 {
@@ -76,11 +77,13 @@ namespace InstagramDownloaderTest.ViewModel
 
         private void StartUIState()
         {
-            InputName = "thebrainscoop";
+            InputName = "eroshka_ia";
             ImageData = new ObservableCollection<Datum>();
             ProgressBarProp(string.Empty, false);
         }
-        
+
+
+        #region Begin to get Collection of photos
         public System.Windows.Input.ICommand _lets_Сollage_Command;
         public System.Windows.Input.ICommand Lets_Сollage_Command
         {
@@ -95,8 +98,8 @@ namespace InstagramDownloaderTest.ViewModel
             if (InputName != string.Empty)
             {
                 //1 get user id
-                GetUserId(InputName);
                 ProgressBarProp("Поиск информации", true);
+                GetUserId(InputName);               
             }
             else
             {
@@ -104,20 +107,26 @@ namespace InstagramDownloaderTest.ViewModel
                 _dialogService.Show("вы не ввели ни одного имени!");
             }
         }
+        #endregion
 
         //get user id by name
         private async void GetUserId(string InputName)
         {
-            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.Trim(), StringDictClass.CLIENT_ID)));           
-            var UserInfo = JsonConvert.DeserializeObject<UserInfoClass>(JsonString);
-            if (UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
+            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.Trim(), StringDictClass.CLIENT_ID)));
+            if (JsonString != null)
             {
-                GetUserOneUser(UserInfo);
+                var UserInfo = JsonConvert.DeserializeObject<UserInfoClass>(JsonString);
+                if (UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
+                {
+                    GetUserOneUser(UserInfo);
+                }
+                else
+                {
+                    ProgressBarProp(string.Empty, false);
+                }
             }
-            else
-            {
-                ProgressBarProp(string.Empty, false);
-            }
+            else { ProgressBarProp(string.Empty, false); }
+           
         }
 
         private void GetUserOneUser(UserInfoClass UserInfo)
@@ -148,13 +157,24 @@ namespace InstagramDownloaderTest.ViewModel
         {
           
             var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetMediaFromUser(p.Trim(), StringDictClass.CLIENT_ID)));
-            var UserMediaInfo = JsonConvert.DeserializeObject<RootObject>(JsonString);
-            ProgressBarProp(string.Empty, false);
-            if (UserMediaInfo.meta.code == 200 && UserMediaInfo.data != null && UserMediaInfo.data.Count > 0)
-            {            
-                ImageData = UserMediaInfo.data;
+            if (JsonString != null)
+            {
+                ImageData.Clear();
+                var UserMediaInfo = JsonConvert.DeserializeObject<RootObject>(JsonString);
+                ProgressBarProp(string.Empty, false);
+                if (UserMediaInfo.meta.code == 200 && UserMediaInfo.data != null && UserMediaInfo.data.Count > 0)
+                {
+                    foreach (var dat in UserMediaInfo.data)
+                    {
+                        if (dat.type == "image")
+                        {
+                            ImageData.Add(dat);
+                        }
+                    }
+                }
             }
-
+            else
+            { ProgressBarProp(string.Empty, false); }
         }
         
     }
