@@ -4,9 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+     xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"   
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
+    xmlns:ImageSelector="clr-namespace:InstagramDownloaderTest.UserSelectorControl" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -44,8 +46,17 @@
 
                 <TextBox Grid.Row="0" Text="{Binding InputName,Mode=TwoWay}"></TextBox>
                 <Button Grid.Row="1" Content="Давай коллаж" Command="{Binding Lets_Сollage_Command}"></Button>
-                
-                <ListBox Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ImageData}" >
+
+
+                <ImageSelector:SelectorControl x:Name="Selector" Grid.Row="2" CollectionImages="{Binding ImageData}">
+                    <Interactivity:Interaction.Triggers>
+                        <Interactivity:EventTrigger EventName="CollectionSelectedChanged">
+                            <Interactivity:InvokeCommandAction  Command="{Binding MakeCollectionCommand}" CommandParameter="{Binding ImageSelectedData,ElementName=Selector}"/>
+                        </Interactivity:EventTrigger>
+                    </Interactivity:Interaction.Triggers>
+                </ImageSelector:SelectorControl>
+
+                <!--<ListBox Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ImageData}" SelectionMode="Multiple" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel/>
@@ -56,7 +67,27 @@
                             <Image Margin="12" Source="{Binding images.low_resolution.url}" Width="100" Height="100"></Image>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+                </ListBox>-->
+                <!--<toolkit:LongListMultiSelector Grid.Row="2" x:Name="GridSelector"  ItemsSource="{Binding ImageData}" LayoutMode="Grid"
+                                IsGroupingEnabled="False"
+                                GridCellSize="210,180"
+                                HideEmptyGroups="True"
+                                
+                               >
+                    <toolkit:LongListMultiSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="1">
+                                <Image Source="{Binding images.low_resolution.url}" Stretch="UniformToFill" />
+                                <Image Visibility="{Binding Selected}" Source="Toolkit.Content/ApplicationBar.Play.png" HorizontalAlignment="Right" VerticalAlignment="Top" />                               
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:LongListMultiSelector.ItemTemplate>
+                </toolkit:LongListMultiSelector>-->
+
+
+                <!--IsSelectionEnabledChanged="OnGridSelectorIsSelectionEnabledChanged"
+               SelectionChanged="OnGridSelectorSelectionChanged"-->
+       
             </Grid>
         </Grid>
     </Grid>

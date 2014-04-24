@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="InstagramDownloaderTest.UserSelectorControl.SelectorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <toolkit:LongListMultiSelector  Grid.Row="0" EnforceIsSelectionEnabled="True"  x:Name="GridSelector"  ItemsSource="{Binding ImageData}" LayoutMode="Grid"
+                                IsGroupingEnabled="False"
+                                GridCellSize="210,180"
+                                HideEmptyGroups="True" SelectionChanged="GridSelector_SelectionChanged">
+            <toolkit:LongListMultiSelector.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="1">
+                        <Image Source="{Binding images.low_resolution.url}" Stretch="UniformToFill" />
+                        <!--<Image Visibility="{Binding Selected}" Source="Toolkit.Content/ApplicationBar.Play.png" HorizontalAlignment="Right" VerticalAlignment="Top" />-->
+                    </Grid>
+                </DataTemplate>
+            </toolkit:LongListMultiSelector.ItemTemplate>
+        </toolkit:LongListMultiSelector>
+        <Button x:Name="GetButton" Visibility="Collapsed" Grid.Row="1" Content="Выбрать" Click="GetButton_Click"></Button>
+    </Grid>
+</UserControl>

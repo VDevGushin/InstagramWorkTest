@@ -16,5 +16,6 @@ namespace InstagramDownloaderTest.View
         {
             InitializeComponent();
         }
+        
     }
 }

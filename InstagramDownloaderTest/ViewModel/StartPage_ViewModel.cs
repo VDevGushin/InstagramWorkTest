@@ -77,6 +77,7 @@ namespace InstagramDownloaderTest.ViewModel
 
         private void StartUIState()
         {
+            //"wade0n"
             InputName = "eroshka_ia";
             ImageData = new ObservableCollection<Datum>();
             ProgressBarProp(string.Empty, false);
@@ -112,11 +113,11 @@ namespace InstagramDownloaderTest.ViewModel
         //get user id by name
         private async void GetUserId(string InputName)
         {
-            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.Trim(), StringDictClass.CLIENT_ID)));
+            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.ToLower().Trim(), StringDictClass.CLIENT_ID)));
             if (JsonString != null)
             {
                 var UserInfo = JsonConvert.DeserializeObject<UserInfoClass>(JsonString);
-                if (UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
+                if (UserInfo != null && UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
                 {
                     GetUserOneUser(UserInfo);
                 }
@@ -164,17 +165,40 @@ namespace InstagramDownloaderTest.ViewModel
                 ProgressBarProp(string.Empty, false);
                 if (UserMediaInfo.meta.code == 200 && UserMediaInfo.data != null && UserMediaInfo.data.Count > 0)
                 {
+
+                    var _tmpCollection = new ObservableCollection<Datum>();
                     foreach (var dat in UserMediaInfo.data)
                     {
                         if (dat.type == "image")
                         {
-                            ImageData.Add(dat);
+                            _tmpCollection.Add(dat);
                         }
                     }
+                        ImageData = _tmpCollection;           
+                }
+                else
+                {
+                    _dialogService.Show("У данного пользователя фоток нету!");
                 }
             }
             else
             { ProgressBarProp(string.Empty, false); }
+        }
+
+
+
+        public System.Windows.Input.ICommand _MakeCollectionCommand;
+        public System.Windows.Input.ICommand MakeCollectionCommand
+        {
+            get
+            {
+                return _MakeCollectionCommand = _MakeCollectionCommand ?? new Command.Command(MakeCollectionCommand_Delegate);
+            }
+        }
+
+        public void MakeCollectionCommand_Delegate(object p)
+        {
+            _dialogService.Show(string.Format("Вы выбрали {0} фоток для работы",((List<Datum>)p).Count));
         }
         
     }
