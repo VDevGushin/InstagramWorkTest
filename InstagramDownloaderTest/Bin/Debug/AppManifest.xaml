@@ -2,6 +2,7 @@
   <Deployment.Parts>
     <AssemblyPart x:Name="InstagramDownloaderTest" Source="InstagramDownloaderTest.dll" />
     <AssemblyPart x:Name="LightInject" Source="LightInject.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
   </Deployment.Parts>
 </Deployment>

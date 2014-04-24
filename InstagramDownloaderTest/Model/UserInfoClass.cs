@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace InstagramDownloaderTest.Model
 {  
-    public class Meta
+    public class Meta1
     {
         public int code { get; set; }
     }
 
-    public class Datum
+    public class UserDatum
     {
         public string username { get; set; }
         public string bio { get; set; }
@@ -23,7 +23,7 @@ namespace InstagramDownloaderTest.Model
 
     public class UserInfoClass
     {
-        public Meta meta { get; set; }
-        public List<Datum> data { get; set; }
+        public Meta1 meta { get; set; }
+        public List<UserDatum> data { get; set; }
     }
 }

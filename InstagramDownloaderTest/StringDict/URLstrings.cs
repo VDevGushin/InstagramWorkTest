@@ -12,5 +12,10 @@ namespace InstagramDownloaderTest.StringDict
        {
            return string.Format("https://api.instagram.com/v1/users/search?q={0}&client_id={1}", InputName, p);
        }
+
+       public static string GetMediaFromUser(string UserID, string p)
+       {
+           return string.Format("https://api.instagram.com/v1/users/{0}/media/recent/?client_id={1}", UserID, p);
+       }
     }
 }

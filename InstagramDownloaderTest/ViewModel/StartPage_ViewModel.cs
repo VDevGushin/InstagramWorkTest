@@ -4,6 +4,7 @@ using InstagramDownloaderTest.StringDict;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,40 @@ namespace InstagramDownloaderTest.ViewModel
             set { SetProperty(ref _InputName, value); }
         }
 
+        private ObservableCollection<Datum> _ImageData;
+
+        public ObservableCollection<Datum> ImageData
+        {
+            get { return _ImageData; }
+            set { SetProperty(ref _ImageData, value); }
+        }
+
+        private bool _progressBarInDeterminate;
+        public bool ProgressBarInDeterminate
+        {
+            get { return _progressBarInDeterminate; }
+            set
+            {
+                SetProperty(ref _progressBarInDeterminate, value);
+            }
+        }
+
+        private string _ProgressbarText;
+
+        public string ProgressbarText
+        {
+            get { return _ProgressbarText; }
+            set { SetProperty(ref _ProgressbarText, value); }
+        }
+
+        #region Work with tray
+        private void ProgressBarProp(string message, bool InDeterminate)
+        {
+            ProgressBarInDeterminate = InDeterminate;
+            ProgressbarText = message;
+        }
+        #endregion
+
         #endregion
 
         #region Services
@@ -41,7 +76,9 @@ namespace InstagramDownloaderTest.ViewModel
 
         private void StartUIState()
         {
-            InputName = "vasumitra";
+            InputName = "thebrainscoop";
+            ImageData = new ObservableCollection<Datum>();
+            ProgressBarProp(string.Empty, false);
         }
         
         public System.Windows.Input.ICommand _lets_Сollage_Command;
@@ -59,9 +96,11 @@ namespace InstagramDownloaderTest.ViewModel
             {
                 //1 get user id
                 GetUserId(InputName);
+                ProgressBarProp("Поиск информации", true);
             }
             else
             {
+                ProgressBarProp(string.Empty, false);
                 _dialogService.Show("вы не ввели ни одного имени!");
             }
         }
@@ -69,24 +108,53 @@ namespace InstagramDownloaderTest.ViewModel
         //get user id by name
         private async void GetUserId(string InputName)
         {
-            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName, StringDictClass.CLIENT_ID)));           
+            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.Trim(), StringDictClass.CLIENT_ID)));           
             var UserInfo = JsonConvert.DeserializeObject<UserInfoClass>(JsonString);
             if (UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
             {
-                GetUserPhotos(UserInfo);
-            }
-        }
-
-        private void GetUserPhotos(UserInfoClass UserInfo)
-        {
-            if (UserInfo.data.Count > 1)
-            {
-
+                GetUserOneUser(UserInfo);
             }
             else
             {
-
+                ProgressBarProp(string.Empty, false);
             }
+        }
+
+        private void GetUserOneUser(UserInfoClass UserInfo)
+        {
+            //get only one user       
+            UserDatum userdatum = null;
+            foreach (var user in UserInfo.data)
+            {
+                if (user.username.Equals(InputName))
+                {
+                    userdatum = user;
+                    break;
+                }
+            }
+            if (userdatum != null && userdatum.id != null && userdatum.id != string.Empty)
+            {
+                GetUserResources(userdatum.id);
+            }
+            else
+            {
+                ProgressBarProp(string.Empty, false);
+                _dialogService.Show("нет такого пользователя");
+            }
+        }
+
+
+        private async void GetUserResources(string p)
+        {
+          
+            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetMediaFromUser(p.Trim(), StringDictClass.CLIENT_ID)));
+            var UserMediaInfo = JsonConvert.DeserializeObject<RootObject>(JsonString);
+            ProgressBarProp(string.Empty, false);
+            if (UserMediaInfo.meta.code == 200 && UserMediaInfo.data != null && UserMediaInfo.data.Count > 0)
+            {            
+                ImageData = UserMediaInfo.data;
+            }
+
         }
         
     }
