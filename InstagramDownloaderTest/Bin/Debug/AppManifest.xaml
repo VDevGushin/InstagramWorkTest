@@ -1,0 +1,7 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="InstagramDownloaderTest" EntryPointType="InstagramDownloaderTest.App" RuntimeVersion="4.7.50308.0">
+  <Deployment.Parts>
+    <AssemblyPart x:Name="InstagramDownloaderTest" Source="InstagramDownloaderTest.dll" />
+    <AssemblyPart x:Name="LightInject" Source="LightInject.dll" />
+    <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
+  </Deployment.Parts>
+</Deployment>

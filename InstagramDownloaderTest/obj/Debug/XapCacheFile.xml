@@ -1,0 +1,17 @@
+﻿<xapCache source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Bin\Debug\InstagramDownloaderTest_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="24.04.2014 16:48:34">
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\obj\Debug\InstagramDownloaderTest.dll" archivePath="InstagramDownloaderTest.dll" lastWriteTime="24.04.2014 16:48:33" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Model\TextFile1.txt" archivePath="Model\TextFile1.txt" lastWriteTime="24.04.2014 16:15:30" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="24.04.2014 16:35:15" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="24.04.2014 15:02:41" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\packages\LightInject.3.0.1.6\lib\windowsphone8\LightInject.dll" archivePath="LightInject.dll" lastWriteTime="24.04.2014 15:05:55" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="24.04.2014 16:20:03" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\packages\LightInject.3.0.1.6\lib\windowsphone8\LightInject.xml" archivePath="LightInject.xml" lastWriteTime="24.04.2014 15:05:55" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="24.04.2014 16:20:03" />
+  <file source="D:\TestForWork\InstagramDownloaderTest\InstagramDownloaderTest\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="24.04.2014 15:11:44" />
+</xapCache>
