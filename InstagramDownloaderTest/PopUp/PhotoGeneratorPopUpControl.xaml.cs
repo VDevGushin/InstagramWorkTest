@@ -126,7 +126,7 @@ namespace InstagramDownloaderTest.PopUp
             {
                 int tempWidth = 0;   // Parameter for Translate.X
                 int tempHeight = 0;  // Parameter for Translate.Y
-
+                int counter = 0;
                 foreach (BitmapImage item in images)
                 {
                     Image image = new Image();
@@ -140,8 +140,22 @@ namespace InstagramDownloaderTest.PopUp
                     tf.Y = tempHeight;
                     wbFinal.Render(image, tf);
 
-                    tempHeight += item.PixelHeight;
-                    tempWidth += item.PixelWidth;
+                    if (isEven(counter))
+                    {
+                        tempWidth += item.PixelWidth;
+                    }
+                    else
+                    {
+                        tempHeight += item.PixelHeight;
+                    }
+                    counter++;
+
+
+                    if (counter % 2 == 0)
+                    {
+                        tempWidth = 0;
+                    }
+
                 }
 
                 wbFinal.Invalidate();
@@ -153,66 +167,13 @@ namespace InstagramDownloaderTest.PopUp
             }        
         }
 
-
-
-
-        private void getImage(List<Datum> observableCollection)
+       private bool isEven(int _n)
         {
-            string[] files = new string[] { "Roses-Most-Beautiful-485x728.jpg", "Lovely-Sea-House-485x728.jpg" };
-            List<BitmapImage> images = new List<BitmapImage>(); // BitmapImage list.
-            int width = 0; // Final width.
-            int height = 0; // Final height.
-
-            foreach (string image in files)
-            {
-                // Create a Bitmap from the file and add it to the list                
-                BitmapImage img = new BitmapImage();
-                StreamResourceInfo r = System.Windows.Application.GetResourceStream(new Uri(image, UriKind.RelativeOrAbsolute));
-                img.SetSource(r.Stream);
-
-                WriteableBitmap wb = new WriteableBitmap(img);
-
-                // Update the size of the final bitmap
-                width = wb.PixelWidth > width ? wb.PixelWidth : width;
-                height = wb.PixelHeight > height ? wb.PixelHeight : height;
-
-                images.Add(img);
-            }
-
-            StreamResourceInfo sri = System.Windows.Application.GetResourceStream(new Uri("White.jpg",
-                UriKind.Relative));
-            finalImage.SetSource(sri.Stream);
-
-            wbFinal = new WriteableBitmap(finalImage);
-            using (MemoryStream mem = new MemoryStream())
-            {
-                int tempWidth = 0;   // Parameter for Translate.X
-                int tempHeight = 0;  // Parameter for Translate.Y
-
-                foreach (BitmapImage item in images)
-                {
-                    Image image = new Image();
-                    image.Height = item.PixelHeight;
-                    image.Width = item.PixelWidth;
-                    image.Source = item;
-
-                    // TranslateTransform                      
-                    TranslateTransform tf = new TranslateTransform();
-                    tf.X = tempWidth;
-                    tf.Y = tempHeight;
-                    wbFinal.Render(image, tf);
-
-                    tempHeight += item.PixelHeight;
-                }
-
-                wbFinal.Invalidate();
-                wbFinal.SaveJpeg(mem, width, height, 0, 100);
-                mem.Seek(0, System.IO.SeekOrigin.Begin);
-
-                // Show image.               
-                ImageCollage.Source = wbFinal;               
-            }        
+            ;
+            return (_n % 2 == 0 ? true : false);
         }
+
+
 
         private void Dismiss(object returnObj)
         {
