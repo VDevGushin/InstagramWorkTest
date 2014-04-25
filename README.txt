@@ -1,6 +1,10 @@
 InstagramWorkTest
-It's application to create a collage of photos downloaded from the instagram
+It's application to create a collage of photos downloaded from the instagram.
 
+This app takes the last twenty images from the user, sorts and gives 
+them the opportunity to collect their collage
+
+P.S. It's a simple example of a test project.
 
 Libraries:
 

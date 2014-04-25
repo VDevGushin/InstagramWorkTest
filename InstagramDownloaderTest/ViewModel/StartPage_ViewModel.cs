@@ -97,9 +97,7 @@ namespace InstagramDownloaderTest.ViewModel
             ImageData = new ObservableCollection<Datum>();
             ProgressBarProp(string.Empty, false,true);
         }
-
-
-        #region Begin to get collection of photos
+              
         public System.Windows.Input.ICommand _lets_Сollage_Command;
         public System.Windows.Input.ICommand Lets_Сollage_Command
         {
@@ -123,7 +121,6 @@ namespace InstagramDownloaderTest.ViewModel
                 _dialogService.Show("Проверьте поля ввода...");
             }
         }
-        #endregion
 
         //get user id by name
         private async void GetUserId(string InputName)
