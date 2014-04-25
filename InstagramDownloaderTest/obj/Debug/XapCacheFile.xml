@@ -1,13 +1,16 @@
-﻿<xapCache source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\InstagramDownloaderTest_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="25.04.2014 17:46:52">
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Debug\InstagramDownloaderTest.dll" archivePath="InstagramDownloaderTest.dll" lastWriteTime="25.04.2014 17:46:52" />
+﻿<xapCache source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\InstagramDownloaderTest_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="25.04.2014 18:29:49">
+  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Debug\InstagramDownloaderTest.dll" archivePath="InstagramDownloaderTest.dll" lastWriteTime="25.04.2014 18:29:48" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F2.jpg" archivePath="F2.jpg" lastWriteTime="25.04.2014 17:22:40" />
+  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F2.png" archivePath="F2.png" lastWriteTime="25.04.2014 18:25:46" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F4.jpg" archivePath="F4.jpg" lastWriteTime="25.04.2014 17:22:40" />
+  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F4.png" archivePath="F4.png" lastWriteTime="25.04.2014 18:26:26" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F6.jpg" archivePath="F6.jpg" lastWriteTime="25.04.2014 17:22:40" />
+  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F6.png" archivePath="F6.png" lastWriteTime="25.04.2014 18:26:59" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Model\TextFile1.txt" archivePath="Model\TextFile1.txt" lastWriteTime="24.04.2014 16:15:30" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="24.04.2014 18:36:32" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="24.04.2014 18:36:32" />

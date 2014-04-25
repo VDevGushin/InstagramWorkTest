@@ -180,8 +180,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="F2.jpg" />
+    <Content Include="F2.png" />
     <Content Include="F4.jpg" />
+    <Content Include="F4.png" />
     <Content Include="F6.jpg" />
+    <Content Include="F6.png" />
     <Content Include="Model\TextFile1.txt" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />

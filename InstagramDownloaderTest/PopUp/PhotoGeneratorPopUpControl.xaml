@@ -22,7 +22,7 @@
             </StackPanel>                        
                 <Image Margin="12"  Height="auto" Width="auto" x:Name="ImageCollage" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ></Image>
 
-            <Button x:Name="ButtonSend" Click="ButtonSend_Click" Grid.Row="2" Content="Отправить на почту" BorderBrush="Black" Foreground="Black"></Button>            
+            <Button x:Name="ButtonSend" Background="Red" Click="ButtonSend_Click" Grid.Row="2" Content="Отправить" BorderBrush="Black" Foreground="Black"></Button>            
         </Grid>
         </Popup>
 </UserControl>
