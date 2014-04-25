@@ -23,7 +23,6 @@ namespace InstagramDownloaderTest.PopUp
 
         BitmapImage finalImage = new BitmapImage();
         WriteableBitmap wbFinal;
-        WriteableBitmap vb;
         public int Counter { get; set; }
 
 
@@ -39,7 +38,8 @@ namespace InstagramDownloaderTest.PopUp
 
         public void Show(object getObject)
         {
-            this.DataContext = this;                       
+       
+                  
             LayoutRoot.Width = Application.Current.Host.Content.ActualWidth;
             LayoutRoot.Height = Application.Current.Host.Content.ActualHeight;
             _currentFrame = Application.Current.RootVisual as PhoneApplicationFrame;
@@ -68,18 +68,14 @@ namespace InstagramDownloaderTest.PopUp
                 transition.Stop();
             };
             transition.Begin();
-
-           
-            GetImageFromWeb(getObject as List<Datum>);
-
-          //  SaveImageToIsolatedStorage(getObject as List<Datum>);
-           
-           // getImage(getObject as List<Datum>);                     
+            GetImageFromWeb(getObject as List<Datum>);                
         }
 
 
         private void GetImageFromWeb(List<Datum> list)
         {
+            SetLoaderState(false);
+
             List<BitmapImage> _wbList = new List<BitmapImage>();
             Counter = list.Count;
             foreach (var Item in list)
@@ -89,17 +85,33 @@ namespace InstagramDownloaderTest.PopUp
                 {
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.SetSource(e.Result);
-                    //WriteableBitmap wb = new WriteableBitmap(bitmap);
                     _wbList.Add(bitmap);
                     if (_wbList.Count == Counter)
                     {
-                        //ImageCollage.Source = wb;
                         MakeCollage(_wbList);
                     }                   
                 };              
                 webClientImg.OpenReadAsync(new Uri(Item.images.low_resolution.url, UriKind.Absolute));
             }
         }
+
+        private void SetLoaderState(bool p)
+        {
+            if (!p)
+            {
+                ButtonSend.Visibility = System.Windows.Visibility.Collapsed;
+                LoaderText.Text = "Собираем коллаж...";
+                Prorgessbar.IsIndeterminate = true;
+            }
+            else
+            {
+                ButtonSend.Visibility = System.Windows.Visibility.Visible;
+                LoaderText.Text = "Коллаж готов...";
+                Prorgessbar.IsIndeterminate = false;
+            }
+        }
+
+       
 
         private void MakeCollage(List<BitmapImage> _wbList)
         {
@@ -161,16 +173,26 @@ namespace InstagramDownloaderTest.PopUp
                 wbFinal.Invalidate();
                 wbFinal.SaveJpeg(mem, width, height, 0, 100);
                 mem.Seek(0, System.IO.SeekOrigin.Begin);
-
                 // Show image.               
-                ImageCollage.Source = wbFinal;            
+                ImageCollage.Source = wbFinal;
+                SetLoaderState(true);
             }        
         }
 
-       private bool isEven(int _n)
+
+
+
+
+        private bool isEven(int _n)
         {
             ;
             return (_n % 2 == 0 ? true : false);
+        }
+
+
+        private void ButtonSend_Click(object sender, RoutedEventArgs e)
+        {
+            Dismiss(wbFinal);
         }
 
 
@@ -205,73 +227,9 @@ namespace InstagramDownloaderTest.PopUp
             e.Cancel = true;
             Dismiss(null);
         }
+
         public event OnDismissEventHandler OnDismiss;
         public delegate void OnDismissEventHandler(object sender, object returnObject);
+      
     }
 }
-/*
- * 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public string strImageName { get; set; }
-        public int counter { get; set; }
-
-        private void SaveImageToIsolatedStorage(List<Datum> list)
-        {
-            counter = list.Count;
-            foreach (var Item in list)
-            {
-                if (Item.images.low_resolution.url.Contains("http://"))
-                {
-                    strImageName = Item.images.low_resolution.url.Substring(Item.images.low_resolution.url.LastIndexOf("/") + 1);
-                    SaveImageToIsolatedStorage(Item.images.low_resolution.url, strImageName);
-                } 
-            }
-        }
-
-
-        private void SaveImageToIsolatedStorage(string uri, string strImageName)
-        {
-            // Use WebClient to download web server's images. 
-            WebClient webClientImg = new WebClient();
-            webClientImg.OpenReadCompleted += (s, e) =>
-                {
-                    SaveToJpeg(e.Result, strImageName);
-                };
-            //webClientImg.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
-            webClientImg.OpenReadAsync(new Uri(uri, UriKind.Absolute));
-        }
-
-      
-        private void SaveToJpeg(Stream stream, string fileName)
-        {
-            using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (iso.FileExists(fileName))
-                {
-                    iso.DeleteFile(fileName);
-                }
-                using (IsolatedStorageFileStream isostream = iso.CreateFile(fileName))
-                {
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.SetSource(stream);
-                    WriteableBitmap wb = new WriteableBitmap(bitmap);
-                    // Encode WriteableBitmap object to a JPEG stream. 
-                    Extensions.SaveJpeg(wb, isostream, wb.PixelWidth, wb.PixelHeight, 0, 85);
-                    isostream.Close();
-                }                
-            }
-        } 
-*/

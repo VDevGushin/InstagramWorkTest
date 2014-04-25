@@ -10,17 +10,23 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <Popup x:Name="RootPopup" >
-        <Grid x:Name="LayoutRoot" Background="Gray" >
+        <Grid x:Name="LayoutRoot" Background="White" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Background="Black" HorizontalAlignment="Stretch">
-                <TextBlock Text="Создание коллажа" Foreground="White"></TextBlock>
+            <StackPanel Grid.Row="0" Margin="0,0,0,12" Background="DarkGray" HorizontalAlignment="Stretch">
+                <TextBlock x:Name="LoaderText"  Foreground="White"></TextBlock>
+                <ProgressBar x:Name="Prorgessbar" IsIndeterminate="True"></ProgressBar>
             </StackPanel>
-            <StackPanel x:Name="ContentPanel" Grid.Row="1" Background="Red">
-                <Image x:Name="ImageCollage"></Image>
-            </StackPanel>
+
+            <ScrollViewer Margin="0,0,0,12" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <StackPanel Height="auto" Width="auto"  Background="White">
+                    <Image Height="auto" Width="auto" x:Name="ImageCollage"></Image>
+                </StackPanel>
+            </ScrollViewer>
+            <Button x:Name="ButtonSend" Click="ButtonSend_Click" Grid.Row="2" Content="Отправить на почту" BorderBrush="Black" Foreground="Black"></Button>            
         </Grid>
         </Popup>
 </UserControl>

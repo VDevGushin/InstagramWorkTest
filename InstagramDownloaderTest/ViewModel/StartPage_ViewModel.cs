@@ -178,7 +178,43 @@ namespace InstagramDownloaderTest.ViewModel
             var _sender = sender as PhotoGeneratorPopUpControl;
             _sender.OnDismiss -= popUp_OnDismiss;
 
+            if (returnObject != null)
+            {
+                WriteableBitmap wb = (WriteableBitmap)returnObject;
+                var fileStream = new System.IO.MemoryStream();
+                wb.SaveJpeg(fileStream, wb.PixelWidth, wb.PixelHeight, 100, 100);
+                fileStream.Seek(0, System.IO.SeekOrigin.Begin);
+
+
+
+
+                Microsoft.Xna.Framework.Media.MediaLibrary ml = new Microsoft.Xna.Framework.Media.MediaLibrary();
+                Microsoft.Xna.Framework.Media.Picture pic = ml.SavePicture("mycollage.png", fileStream);
+                var path = Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(pic);
+
+                Microsoft.Phone.Tasks.ShareMediaTask shareMediaTask = new Microsoft.Phone.Tasks.ShareMediaTask();
+                shareMediaTask.FilePath = path;
+                shareMediaTask.Show();
+            }
             //send to email
+            //if (returnObject != null)
+            //{
+            //    WriteableBitmap wb = (WriteableBitmap)returnObject;
+            //     using (var memoryStream = new System.IO.MemoryStream())
+            //     {
+            //         wb.SaveJpeg(memoryStream, wb.PixelWidth, wb.PixelHeight, 0, 60);
+            //         memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+            //         var bytes = memoryStream.ToArray();
+            //         var base64String = Convert.ToBase64String(bytes);
+
+            //         var emailComposeTask = new Microsoft.Phone.Tasks.EmailComposeTask
+            //         {
+            //             Subject = "Коллаж из программы",
+            //             Body = base64String                      
+            //         };
+            //         emailComposeTask.Show();
+            //     }
+            //}
 
         }        
     }
