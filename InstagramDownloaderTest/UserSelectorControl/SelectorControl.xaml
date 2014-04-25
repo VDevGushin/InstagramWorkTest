@@ -8,20 +8,20 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    >
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <toolkit:LongListMultiSelector  Grid.Row="0" EnforceIsSelectionEnabled="True"  x:Name="GridSelector"  ItemsSource="{Binding ImageData}" LayoutMode="Grid"
+        <toolkit:LongListMultiSelector  Grid.Row="0" EnforceIsSelectionEnabled="True"  x:Name="GridSelector"  ItemsSource="{Binding ImageData}" LayoutMode="Grid"                                        
                                 IsGroupingEnabled="False"
                                 GridCellSize="210,180"
                                 HideEmptyGroups="True" SelectionChanged="GridSelector_SelectionChanged">
             <toolkit:LongListMultiSelector.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="6">
+                    <Grid Margin="1" >
                         <Image Source="{Binding images.thumbnail.url}" Stretch="UniformToFill" />
                         <!--<Image Visibility="{Binding Selected}" Source="Toolkit.Content/ApplicationBar.Play.png" HorizontalAlignment="Right" VerticalAlignment="Top" />-->
                     </Grid>

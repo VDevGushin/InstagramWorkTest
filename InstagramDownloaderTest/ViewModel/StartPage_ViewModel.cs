@@ -32,16 +32,24 @@ namespace InstagramDownloaderTest.ViewModel
         {
             get { return _ImageData; }
             set { SetProperty(ref _ImageData, value); }
-        }        
+        }
 
+        private bool _isEnabledFields;
+
+        public bool IsEnabledFields
+        {
+            get { return _isEnabledFields; }
+            set {  SetProperty(ref _isEnabledFields, value);  }
+        }
+        
+        
         #endregion
 
         #region Services
 
         private readonly IDialogService _dialogService;
-        private readonly IGetHttpResponseData _webDataSource;
-
         private readonly IUser _getUserIdService;
+
         #endregion
 
         #region Progress bar 
@@ -65,10 +73,11 @@ namespace InstagramDownloaderTest.ViewModel
         }
 
         
-        private void ProgressBarProp(string message, bool InDeterminate)
+        private void ProgressBarProp(string message, bool InDeterminate , bool isEnableFields)
         {
             ProgressBarInDeterminate = InDeterminate;
             ProgressbarText = message;
+            IsEnabledFields = isEnableFields;
         }
         
         #endregion
@@ -83,10 +92,10 @@ namespace InstagramDownloaderTest.ViewModel
 
         private void StartUIState()
         {
-            //"wade0n" eroshka_ia france_faust
-            InputName = "france_faust";
+            //"wade0n" eroshka_ia france_faust            
+            InputName = string.Empty;           
             ImageData = new ObservableCollection<Datum>();
-            ProgressBarProp(string.Empty, false);
+            ProgressBarProp(string.Empty, false,true);
         }
 
 
@@ -105,12 +114,12 @@ namespace InstagramDownloaderTest.ViewModel
             if (InputName != string.Empty)
             {
                 //1 get user id
-                ProgressBarProp("Поиск информации", true);
+                ProgressBarProp("Поиск информации", true,false);
                 GetUserId(InputName);               
             }
             else
             {
-                ProgressBarProp(string.Empty, false);
+                ProgressBarProp(string.Empty, false,true);
                 _dialogService.Show("Проверьте поля ввода...");
             }
         }
@@ -130,7 +139,7 @@ namespace InstagramDownloaderTest.ViewModel
             else
             {
                 _dialogService.Show("Не удается найти пользователя...");
-                ProgressBarProp(string.Empty, false);
+                ProgressBarProp(string.Empty, false,true);
             }
            
         }
@@ -145,12 +154,12 @@ namespace InstagramDownloaderTest.ViewModel
                 ImageData.Clear();
                 //get sorted by likes images (for image picker)
                 ImageData = GetCollection;
-                ProgressBarProp(string.Empty, false);
+                ProgressBarProp(string.Empty, false,true);
             }
             else
             {
                 _dialogService.Show("Не удается найти фотографии...");
-                ProgressBarProp(string.Empty, false);
+                ProgressBarProp(string.Empty, false,true);
             }      
         }
 
@@ -165,57 +174,32 @@ namespace InstagramDownloaderTest.ViewModel
             }
         }
 
-        public void MakeCollectionCommand_Delegate(object p)
+        public void MakeCollectionCommand_Delegate(object selectedImages)
         {
            // _dialogService.Show(string.Format("Вы выбрали {0} фоток для работы",((List<Datum>)p).Count));
             PhotoGeneratorPopUpControl popUp = new PhotoGeneratorPopUpControl();
-            popUp.Show(p);
+            popUp.Show(selectedImages);
             popUp.OnDismiss += popUp_OnDismiss;
         }
-
+        //can be return to viewmodel
         void popUp_OnDismiss(object sender, object returnObject)
         {
             var _sender = sender as PhotoGeneratorPopUpControl;
             _sender.OnDismiss -= popUp_OnDismiss;
-
-            if (returnObject != null)
-            {
-                WriteableBitmap wb = (WriteableBitmap)returnObject;
-                var fileStream = new System.IO.MemoryStream();
-                wb.SaveJpeg(fileStream, wb.PixelWidth, wb.PixelHeight, 100, 100);
-                fileStream.Seek(0, System.IO.SeekOrigin.Begin);
-
-
-
-
-                Microsoft.Xna.Framework.Media.MediaLibrary ml = new Microsoft.Xna.Framework.Media.MediaLibrary();
-                Microsoft.Xna.Framework.Media.Picture pic = ml.SavePicture("mycollage.png", fileStream);
-                var path = Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(pic);
-
-                Microsoft.Phone.Tasks.ShareMediaTask shareMediaTask = new Microsoft.Phone.Tasks.ShareMediaTask();
-                shareMediaTask.FilePath = path;
-                shareMediaTask.Show();
-            }
-            //send to email
+            //share image
             //if (returnObject != null)
             //{
             //    WriteableBitmap wb = (WriteableBitmap)returnObject;
-            //     using (var memoryStream = new System.IO.MemoryStream())
-            //     {
-            //         wb.SaveJpeg(memoryStream, wb.PixelWidth, wb.PixelHeight, 0, 60);
-            //         memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
-            //         var bytes = memoryStream.ToArray();
-            //         var base64String = Convert.ToBase64String(bytes);
-
-            //         var emailComposeTask = new Microsoft.Phone.Tasks.EmailComposeTask
-            //         {
-            //             Subject = "Коллаж из программы",
-            //             Body = base64String                      
-            //         };
-            //         emailComposeTask.Show();
-            //     }
+            //    var fileStream = new System.IO.MemoryStream();
+            //    wb.SaveJpeg(fileStream, wb.PixelWidth, wb.PixelHeight, 100, 100);
+            //    fileStream.Seek(0, System.IO.SeekOrigin.Begin);
+            //    Microsoft.Xna.Framework.Media.MediaLibrary ml = new Microsoft.Xna.Framework.Media.MediaLibrary();
+            //    Microsoft.Xna.Framework.Media.Picture pic = ml.SavePicture("TestCollage.png", fileStream);
+            //    var path = Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(pic);
+            //    Microsoft.Phone.Tasks.ShareMediaTask shareMediaTask = new Microsoft.Phone.Tasks.ShareMediaTask();
+            //    shareMediaTask.FilePath = path;
+            //    shareMediaTask.Show();
             //}
-
         }        
     }
 }

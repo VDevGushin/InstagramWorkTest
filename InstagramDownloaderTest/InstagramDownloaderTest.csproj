@@ -179,17 +179,16 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\spinner.png" />
-    <Content Include="Lovely-Sea-House-485x728.jpg" />
+    <Content Include="F2.jpg" />
+    <Content Include="F4.jpg" />
+    <Content Include="F6.jpg" />
     <Content Include="Model\TextFile1.txt" />
     <Content Include="README_FIRST.txt" />
-    <Content Include="Roses-Most-Beautiful-485x728.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
-    <Content Include="White.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
