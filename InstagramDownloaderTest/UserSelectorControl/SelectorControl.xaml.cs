@@ -15,9 +15,6 @@ namespace InstagramDownloaderTest.UserSelectorControl
 {
     public partial class SelectorControl : UserControl
     {
-
-
-
         public SelectorControl()
         {
             InitializeComponent();
@@ -38,7 +35,7 @@ namespace InstagramDownloaderTest.UserSelectorControl
             ((SelectorControl)d).OnCollectionImagesChanged(e);
         }
 
-        private void OnCollectionImagesChanged(DependencyPropertyChangedEventArgs e)
+        private void OnCollectionImagesChanged(DependencyPropertyChangedEventArgs e) 
         {
             var Source = (ObservableCollection<Datum>)e.NewValue;
             GridSelector.ItemsSource = Source;
@@ -63,7 +60,7 @@ namespace InstagramDownloaderTest.UserSelectorControl
         private void ImageSelectedDataChanged(DependencyPropertyChangedEventArgs e)
         {
             if (((List<Datum>)e.NewValue).Count > 0)
-            {
+            {                
                 GetButton.Visibility = System.Windows.Visibility.Visible;
             }
 

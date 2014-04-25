@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="InstagramDownloaderTest.PopUp.PhotoGeneratorPopUpControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Popup x:Name="RootPopup" >
+        <Grid x:Name="LayoutRoot" Background="Gray" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="Black" HorizontalAlignment="Stretch">
+                <TextBlock Text="Создание коллажа" Foreground="White"></TextBlock>
+            </StackPanel>
+            <StackPanel x:Name="ContentPanel" Grid.Row="1" Background="Red">
+                <Image x:Name="ImageCollage"></Image>
+            </StackPanel>
+        </Grid>
+        </Popup>
+</UserControl>

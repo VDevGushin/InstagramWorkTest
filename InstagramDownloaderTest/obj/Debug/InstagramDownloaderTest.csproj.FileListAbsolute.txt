@@ -124,3 +124,16 @@ C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\ru\System.Windows.Interactivity.resources.dll
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Debug\PopUp\PhotoGeneratorPopUpControl.g.cs
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\blank.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\microphone.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\play.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\record.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\speaker.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\Images\stop.png
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhone.dll
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.dll
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhone.pdb
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhone.xml
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.pdb
+C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.xml

@@ -19,6 +19,7 @@ namespace InstagramDownloaderTest.IOC
 
             _currentContainer.Register<IDialogService,DialogService>(new LightInject.PerContainerLifetime());
             _currentContainer.Register<IGetHttpResponseData, GetWebDataSource>();
+            _currentContainer.Register<IUser, UserINFO>();
         }
 
         public T GetInstance<T>()

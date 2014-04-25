@@ -1,4 +1,5 @@
 ﻿using InstagramDownloaderTest.Model;
+using InstagramDownloaderTest.PopUp;
 using InstagramDownloaderTest.Service.Interfaces;
 using InstagramDownloaderTest.StringDict;
 using Newtonsoft.Json;
@@ -31,7 +32,19 @@ namespace InstagramDownloaderTest.ViewModel
         {
             get { return _ImageData; }
             set { SetProperty(ref _ImageData, value); }
-        }
+        }        
+
+        #endregion
+
+        #region Services
+
+        private readonly IDialogService _dialogService;
+        private readonly IGetHttpResponseData _webDataSource;
+
+        private readonly IUser _getUserIdService;
+        #endregion
+
+        #region Progress bar 
 
         private bool _progressBarInDeterminate;
         public bool ProgressBarInDeterminate
@@ -51,40 +64,33 @@ namespace InstagramDownloaderTest.ViewModel
             set { SetProperty(ref _ProgressbarText, value); }
         }
 
-        #region Work with tray
+        
         private void ProgressBarProp(string message, bool InDeterminate)
         {
             ProgressBarInDeterminate = InDeterminate;
             ProgressbarText = message;
         }
+        
         #endregion
 
-        #endregion
-
-        #region Services
-
-        private readonly IDialogService _dialogService;
-        private readonly IGetHttpResponseData _webDataSource;
-        #endregion
-
-        public StartPage_ViewModel(IDialogService dialogService , IGetHttpResponseData webDataSource)
+        public StartPage_ViewModel(IDialogService dialogService, IUser getUserIdService)
         {
             //get services for viewmodel
             _dialogService = dialogService;
-            _webDataSource = webDataSource;
+            _getUserIdService = getUserIdService;
             StartUIState();
         }
 
         private void StartUIState()
         {
-            //"wade0n"
-            InputName = "eroshka_ia";
+            //"wade0n" eroshka_ia france_faust
+            InputName = "france_faust";
             ImageData = new ObservableCollection<Datum>();
             ProgressBarProp(string.Empty, false);
         }
 
 
-        #region Begin to get Collection of photos
+        #region Begin to get collection of photos
         public System.Windows.Input.ICommand _lets_Сollage_Command;
         public System.Windows.Input.ICommand Lets_Сollage_Command
         {
@@ -105,7 +111,7 @@ namespace InstagramDownloaderTest.ViewModel
             else
             {
                 ProgressBarProp(string.Empty, false);
-                _dialogService.Show("вы не ввели ни одного имени!");
+                _dialogService.Show("Проверьте поля ввода...");
             }
         }
         #endregion
@@ -113,76 +119,39 @@ namespace InstagramDownloaderTest.ViewModel
         //get user id by name
         private async void GetUserId(string InputName)
         {
-            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetUserIdString(InputName.ToLower().Trim(), StringDictClass.CLIENT_ID)));
-            if (JsonString != null)
+
+            UserDatum UserInfo = await _getUserIdService.GetUserObjectClass<UserDatum>(InputName);
+
+            if (UserInfo != null && UserInfo.id != null && UserInfo.id != string.Empty)
             {
-                var UserInfo = JsonConvert.DeserializeObject<UserInfoClass>(JsonString);
-                if (UserInfo != null && UserInfo.meta.code == 200 && UserInfo.data != null && UserInfo.data.Count > 0)
-                {
-                    GetUserOneUser(UserInfo);
-                }
-                else
-                {
-                    ProgressBarProp(string.Empty, false);
-                }
+
+                GetUserResources(UserInfo.id);
             }
-            else { ProgressBarProp(string.Empty, false); }
+            else
+            {
+                _dialogService.Show("Не удается найти пользователя...");
+                ProgressBarProp(string.Empty, false);
+            }
            
         }
 
-        private void GetUserOneUser(UserInfoClass UserInfo)
-        {
-            //get only one user       
-            UserDatum userdatum = null;
-            foreach (var user in UserInfo.data)
-            {
-                if (user.username.Equals(InputName))
-                {
-                    userdatum = user;
-                    break;
-                }
-            }
-            if (userdatum != null && userdatum.id != null && userdatum.id != string.Empty)
-            {
-                GetUserResources(userdatum.id);
-            }
-            else
-            {
-                ProgressBarProp(string.Empty, false);
-                _dialogService.Show("нет такого пользователя");
-            }
-        }
 
-
-        private async void GetUserResources(string p)
+        private async void GetUserResources(string UserID)
         {
-          
-            var JsonString = Convert.ToString(await _webDataSource.LoadRemote<string>(URLstrings.GetMediaFromUser(p.Trim(), StringDictClass.CLIENT_ID)));
-            if (JsonString != null)
+            
+            ObservableCollection<Datum> GetCollection = await _getUserIdService.GetUserBestColletion<ObservableCollection<Datum>>(UserID);
+            if (GetCollection != null && GetCollection.Count > 0)
             {
                 ImageData.Clear();
-                var UserMediaInfo = JsonConvert.DeserializeObject<RootObject>(JsonString);
+                //get sorted by likes images (for image picker)
+                ImageData = GetCollection;
                 ProgressBarProp(string.Empty, false);
-                if (UserMediaInfo.meta.code == 200 && UserMediaInfo.data != null && UserMediaInfo.data.Count > 0)
-                {
-
-                    var _tmpCollection = new ObservableCollection<Datum>();
-                    foreach (var dat in UserMediaInfo.data)
-                    {
-                        if (dat.type == "image")
-                        {
-                            _tmpCollection.Add(dat);
-                        }
-                    }
-                        ImageData = _tmpCollection;           
-                }
-                else
-                {
-                    _dialogService.Show("У данного пользователя фоток нету!");
-                }
             }
             else
-            { ProgressBarProp(string.Empty, false); }
+            {
+                _dialogService.Show("Не удается найти фотографии...");
+                ProgressBarProp(string.Empty, false);
+            }      
         }
 
 
@@ -198,8 +167,19 @@ namespace InstagramDownloaderTest.ViewModel
 
         public void MakeCollectionCommand_Delegate(object p)
         {
-            _dialogService.Show(string.Format("Вы выбрали {0} фоток для работы",((List<Datum>)p).Count));
+           // _dialogService.Show(string.Format("Вы выбрали {0} фоток для работы",((List<Datum>)p).Count));
+            PhotoGeneratorPopUpControl popUp = new PhotoGeneratorPopUpControl();
+            popUp.Show(p);
+            popUp.OnDismiss += popUp_OnDismiss;
         }
-        
+
+        void popUp_OnDismiss(object sender, object returnObject)
+        {
+            var _sender = sender as PhotoGeneratorPopUpControl;
+            _sender.OnDismiss -= popUp_OnDismiss;
+
+            //send to email
+
+        }        
     }
 }

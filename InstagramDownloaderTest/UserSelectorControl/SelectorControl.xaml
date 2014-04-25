@@ -21,8 +21,8 @@
                                 HideEmptyGroups="True" SelectionChanged="GridSelector_SelectionChanged">
             <toolkit:LongListMultiSelector.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="1">
-                        <Image Source="{Binding images.low_resolution.url}" Stretch="UniformToFill" />
+                    <Grid Margin="6">
+                        <Image Source="{Binding images.thumbnail.url}" Stretch="UniformToFill" />
                         <!--<Image Visibility="{Binding Selected}" Source="Toolkit.Content/ApplicationBar.Play.png" HorizontalAlignment="Right" VerticalAlignment="Top" />-->
                     </Grid>
                 </DataTemplate>
