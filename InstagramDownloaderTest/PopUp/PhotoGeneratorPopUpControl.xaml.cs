@@ -15,6 +15,10 @@ using System.Windows.Resources;
 using System.Collections.ObjectModel;
 using InstagramDownloaderTest.Model;
 using System.IO.IsolatedStorage;
+using Microsoft.Phone.Tasks;
+using System.Threading.Tasks;
+
+
 
 namespace InstagramDownloaderTest.PopUp
 {
@@ -24,7 +28,6 @@ namespace InstagramDownloaderTest.PopUp
         BitmapImage finalImage = new BitmapImage();
         WriteableBitmap wbFinal;
         public int Counter { get; set; }
-
 
         PhoneApplicationPage _currentPage;
         PhoneApplicationFrame _currentFrame;
@@ -66,6 +69,7 @@ namespace InstagramDownloaderTest.PopUp
                 transition.Stop();
             };
             transition.Begin();
+
             //get Image source
             GetImageFromWeb(getObject as List<Datum>);                
         }
@@ -74,28 +78,34 @@ namespace InstagramDownloaderTest.PopUp
         private void GetImageFromWeb(List<Datum> list)
         {
             SetLoaderState(false);
-
-            List<BitmapImage> _wbList = new List<BitmapImage>();
-            //count of download images
-            Counter = list.Count;
-
-            foreach (var Item in list)
+            try
             {
-                WebClient webClientImg = new WebClient();
-                webClientImg.OpenReadCompleted += (s, e) =>
+                List<BitmapImage> _wbList = new List<BitmapImage>();
+                //count of download images
+                Counter = list.Count;
+
+                foreach (var Item in list)
                 {
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.SetSource(e.Result);
-                    //add new image to list(for make collage)
-                    _wbList.Add(bitmap);
-                    //check for all images
-                    if (_wbList.Count == Counter)
+                    WebClient webClientImg = new WebClient();
+                    webClientImg.OpenReadCompleted += (s, e) =>
                     {
-                        //if all photos
-                        MakeCollage(_wbList);
-                    }                   
-                };              
-                webClientImg.OpenReadAsync(new Uri(Item.images.low_resolution.url, UriKind.Absolute));
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.SetSource(e.Result);
+                        //add new image to list(for make collage)
+                        _wbList.Add(bitmap);
+                        //check for all images
+                        if (_wbList.Count == Counter)
+                        {
+                            //if all photos
+                            MakeCollage(_wbList);
+                        }
+                    };
+                    webClientImg.OpenReadAsync(new Uri(Item.images.standard_resolution.url, UriKind.Absolute));
+                }
+            }
+            catch
+            {
+                LoaderText.Text = "Ошибка...";
             }
         }
 
@@ -131,26 +141,9 @@ namespace InstagramDownloaderTest.PopUp
                 images.Add(item);
             }
 
-            StreamResourceInfo sri;
-            if (_wbList.Count >= 1 && _wbList.Count < 3)
-            {
-                sri =  System.Windows.Application.GetResourceStream(new Uri("F2.jpg",
-                  UriKind.Relative));
-            }
-            else if (_wbList.Count >= 3 && _wbList.Count < 5)
-            {
-                sri = System.Windows.Application.GetResourceStream(new Uri("F4.jpg",
-                UriKind.Relative));
-            }
-            else
-            {
-                sri = System.Windows.Application.GetResourceStream(new Uri("F6.jpg",
-                UriKind.Relative));
-            }
-
-            finalImage.SetSource(sri.Stream);
-
-            wbFinal = new WriteableBitmap(finalImage);
+            SizeInt finalSize = GETSize(_wbList.Count, images);         
+            wbFinal = new WriteableBitmap(finalSize.Width,finalSize.Height);
+            
             using (MemoryStream mem = new MemoryStream())
             {
                 int tempWidth = 0;   // Parameter for Translate.X
@@ -188,11 +181,69 @@ namespace InstagramDownloaderTest.PopUp
                 wbFinal.Invalidate();
                 wbFinal.SaveJpeg(mem, width, height, 0, 100);
                 mem.Seek(0, System.IO.SeekOrigin.Begin);
-                // Show image               
+                // Show image     
+                //int[] pixelColors = wbFinal.Pixels.ToArray();
+                //ApplyFilter(pixelColors);
+                //wbFinal.SetPixel( = pixelColors;
                 ImageCollage.Source = wbFinal;
                 SetLoaderState(true);
+                mem.Close();
             }        
         }
+
+        private void ApplyFilter(int[] target)
+        {
+            for (int i = 0; i < target.Length; i += 4)
+            {
+                // Subtract the colors from white(255 or 0xFF)
+                // Blue
+                target[i + 0] = (byte)(255 - target[i + 0]);
+                // Green
+                target[i + 1] = (byte)(255 - target[i + 1]);
+                // Red
+                target[i + 2] = (byte)(255 - target[i + 2]);
+                // Alpha
+                //target[i + 3] = target[i + 3];
+            }
+        }
+
+
+        private SizeInt GETSize(int p, List<BitmapImage> images)
+        {
+            SizeInt retuneSize = new SizeInt();
+            SizeInt ImagesSize = new SizeInt();
+            foreach (var image in images)
+            {
+                ImagesSize.Width =image.PixelWidth;
+               ImagesSize.Height = image.PixelHeight;
+                break;
+            }
+
+            if (p == 1)
+            {
+                retuneSize.Height = ImagesSize.Height;
+                retuneSize.Width = ImagesSize.Width;
+            }
+            else if (p > 1 && p < 3)
+            {
+                retuneSize.Height = ImagesSize.Height;
+                retuneSize.Width = ImagesSize.Width *2;
+            }
+
+            else if (p >= 3 && p < 5)
+            {
+                retuneSize.Height = ImagesSize.Height * 2;
+                retuneSize.Width = ImagesSize.Width * 2;
+            }
+            else
+            {
+                retuneSize.Height = ImagesSize.Height * 3;
+                retuneSize.Width = ImagesSize.Width * 2;
+            }
+            return retuneSize;
+        }
+  
+        
 
 
         private bool isEven(int _n)
@@ -218,6 +269,7 @@ namespace InstagramDownloaderTest.PopUp
             }
         }
 
+        #region Close popup
         private void Dismiss(object returnObj)
         {
             _currentFrame.Focus();
@@ -250,6 +302,30 @@ namespace InstagramDownloaderTest.PopUp
 
         public event OnDismissEventHandler OnDismiss;
         public delegate void OnDismissEventHandler(object sender, object returnObject);
-      
+
+        #endregion
     }
 }
+/*
+ *    ////get count of images
+            //StreamResourceInfo sri;
+            //if (_wbList.Count >= 1 && _wbList.Count < 3)
+            //{
+            //    sri =  System.Windows.Application.GetResourceStream(new Uri("F2.jpg",
+            //      UriKind.Relative));
+            //}
+            //else if (_wbList.Count >= 3 && _wbList.Count < 5)
+            //{
+            //    sri = System.Windows.Application.GetResourceStream(new Uri("F4.jpg",
+            //    UriKind.Relative));
+            //}
+            //else
+            //{
+            //    sri = System.Windows.Application.GetResourceStream(new Uri("F6.jpg",
+            //    UriKind.Relative));
+            //}
+            ////
+            //set source of final image
+           // finalImage.SetSource(sri.Stream);
+Set Background
+*/

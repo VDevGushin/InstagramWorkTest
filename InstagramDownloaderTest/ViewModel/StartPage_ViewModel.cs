@@ -93,7 +93,7 @@ namespace InstagramDownloaderTest.ViewModel
         private void StartUIState()
         {
             //"wade0n" eroshka_ia france_faust            
-            InputName = string.Empty;           
+            InputName = "eroshka_ia";           
             ImageData = new ObservableCollection<Datum>();
             ProgressBarProp(string.Empty, false,true);
         }

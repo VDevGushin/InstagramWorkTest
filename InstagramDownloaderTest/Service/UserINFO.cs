@@ -26,7 +26,7 @@ namespace InstagramDownloaderTest.Service
 
         public async Task<T> GetUserObjectClass<T>(string UserName)
         {
-            UserDatum UDAT = await GetUserInformation(UserName.ToLower().Trim());
+            var UDAT = await GetUserInformation(UserName.ToLower().Trim());
             return (T)Convert.ChangeType(UDAT, typeof(T));
         }
 
