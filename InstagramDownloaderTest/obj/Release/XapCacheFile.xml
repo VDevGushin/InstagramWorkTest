@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Release\InstagramDownloaderTest_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="28.04.2014 12:49:37">
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\InstagramDownloaderTest.dll" archivePath="InstagramDownloaderTest.dll" lastWriteTime="28.04.2014 12:49:35" />
+﻿<xapCache source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Bin\Release\InstagramDownloaderTest_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="28.04.2014 14:32:26">
+  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\InstagramDownloaderTest.dll" archivePath="InstagramDownloaderTest.dll" lastWriteTime="28.04.2014 14:32:25" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="24.04.2014 15:02:41" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="24.04.2014 15:02:41" />
@@ -11,30 +11,6 @@
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F4.png" archivePath="F4.png" lastWriteTime="25.04.2014 18:26:26" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F6.jpg" archivePath="F6.jpg" lastWriteTime="25.04.2014 17:22:40" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\F6.png" archivePath="F6.png" lastWriteTime="25.04.2014 18:26:59" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin1\photo.jpg" archivePath="images\skin1\photo.jpg" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin1\photo_edges_mask.png" archivePath="images\skin1\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin1\photo_mask.png" archivePath="images\skin1\photo_mask.png" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin1\photo_texture.jpg" archivePath="images\skin1\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin2\photo.jpg" archivePath="images\skin2\photo.jpg" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin2\photo_edges_mask.png" archivePath="images\skin2\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin2\photo_mask.png" archivePath="images\skin2\photo_mask.png" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin2\photo_texture.jpg" archivePath="images\skin2\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin3\photo.jpg" archivePath="images\skin3\photo.jpg" lastWriteTime="28.04.2014 11:17:19" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin3\photo_edges_mask.png" archivePath="images\skin3\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin3\photo_mask.png" archivePath="images\skin3\photo_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin3\photo_texture.jpg" archivePath="images\skin3\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin4\photo.jpg" archivePath="images\skin4\photo.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin4\photo_edges_mask.png" archivePath="images\skin4\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin4\photo_mask.png" archivePath="images\skin4\photo_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin4\photo_texture.jpg" archivePath="images\skin4\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin5\photo.jpg" archivePath="images\skin5\photo.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin5\photo_edges_mask.png" archivePath="images\skin5\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin5\photo_mask.png" archivePath="images\skin5\photo_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin5\photo_texture.jpg" archivePath="images\skin5\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin6\photo.jpg" archivePath="images\skin6\photo.jpg" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin6\photo_edges_mask.png" archivePath="images\skin6\photo_edges_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin6\photo_mask.png" archivePath="images\skin6\photo_mask.png" lastWriteTime="28.04.2014 11:17:20" />
-  <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\images\skin6\photo_texture.jpg" archivePath="images\skin6\photo_texture.jpg" lastWriteTime="28.04.2014 11:17:20" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Model\TextFile1.txt" archivePath="Model\TextFile1.txt" lastWriteTime="24.04.2014 16:15:30" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="24.04.2014 18:36:32" />
   <file source="C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="24.04.2014 18:36:32" />
