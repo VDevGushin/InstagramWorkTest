@@ -185,14 +185,28 @@ namespace InstagramDownloaderTest.PopUp
                 //int[] pixelColors = wbFinal.Pixels.ToArray();
                 //ApplyFilter(pixelColors);
                 //wbFinal.SetPixel( = pixelColors;
-
                 ImageCollage.Source = wbFinal;
                 SetLoaderState(true);
                 mem.Close();
             }        
         }
 
-       
+        private void ApplyFilter(int[] target)
+        {
+            for (int i = 0; i < target.Length; i += 4)
+            {
+                // Subtract the colors from white(255 or 0xFF)
+                // Blue
+                target[i + 0] = (byte)(255 - target[i + 0]);
+                // Green
+                target[i + 1] = (byte)(255 - target[i + 1]);
+                // Red
+                target[i + 2] = (byte)(255 - target[i + 2]);
+                // Alpha
+                //target[i + 3] = target[i + 3];
+            }
+        }
+
 
         private SizeInt GETSize(int p, List<BitmapImage> images)
         {
@@ -228,7 +242,7 @@ namespace InstagramDownloaderTest.PopUp
             }
             return retuneSize;
         }
- 
+  
         
 
 

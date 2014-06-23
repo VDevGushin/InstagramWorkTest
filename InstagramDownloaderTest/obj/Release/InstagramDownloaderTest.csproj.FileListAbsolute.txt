@@ -104,4 +104,3 @@ C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\InstagramDownloaderTest.dll
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\InstagramDownloaderTest.pdb
 C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\XapCacheFile.xml
-C:\Users\gushchin\Documents\GitHub\InstagramWorkTest\InstagramDownloaderTest\obj\Release\InstagramDownloaderTest.csprojResolveAssemblyReference.cache
