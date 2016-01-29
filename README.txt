@@ -1,12 +1,12 @@
-InstagramWorkTest
-It's application to create a collage of photos downloaded from the instagram.
+InstagramWorkTestâââ
+It's application to create a collâûâàûâage of photos downloaded from the instagram.
 
 This app takes the last twenty images from the user, sorts and gives 
 them the opportunity to collect their collage
-
+àôûâàôûâà
 P.S. It's a simple example of a test project.
-
-Libraries:
+ôûâàôûâàôûâàôûâàôûâ
+Libraries:ôûâ
 123123123
 LightInject.3.0.1.6	
 Newtonsoft.Json.6.0.5	
